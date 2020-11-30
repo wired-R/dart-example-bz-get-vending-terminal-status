@@ -1,3 +1,5 @@
+![Dart](https://github.com/wired-R/dart-example-bz-get-vending-terminal-status/workflows/Dart/badge.svg?branch=master)
+
 # usage
 
 `vending_terminal_statuses_by_city ?` for help
