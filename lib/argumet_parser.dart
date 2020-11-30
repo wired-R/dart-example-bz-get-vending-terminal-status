@@ -22,7 +22,9 @@ class ArgumentParser {
           allowed: ['full', 'empty', 'error', 'all'],
           help: 'Specify Vending terminal status, one of: ')
       ..addFlag('?', abbr: '?', help: 'Show this help');
+
     var argResults;
+
     try {
       argResults = parser.parse(arguments);
     } on FormatException {
@@ -32,6 +34,7 @@ class ArgumentParser {
 
     if (argResults.arguments.isEmpty || arguments.contains('?')) {
       print(parser.usage);
+      exit(0);
     }
 
     _city = argResults['city'];
