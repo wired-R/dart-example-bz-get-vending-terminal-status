@@ -5,17 +5,21 @@ import 'package:http/http.dart' as http;
 /// Filter output data by city and status
 class FiltredVendingTerminalStatus extends VendingTerminalStatus {
   String _city; //ignore
-  String _status;
-  FiltredVendingTerminalStatus(this._city, this._status);
+  final String _status;
+  static const Map _cityes = {'spb': 'Санкт-Петербург', 'moscow': 'Москва'};
+  FiltredVendingTerminalStatus(this._city, this._status) {
+    _city = _cityes[_city];
+  }
 
   @override
   List<VendingTerminalStatus> vendingTerminalStatusFromJson(String body) {
     var filtredTerminals = List<VendingTerminalStatus>();
     for (var t in json.decode(body)) {
       var terminal = VendingTerminalStatus.fromJson(t);
-      // Implement a city filter after Gosha adds such a field to api
       if (_status == 'all' || terminal.status == _status) {
-        filtredTerminals.add(terminal);
+        if (_city == 'all' || terminal.city == _city) {
+          filtredTerminals.add(terminal);
+        }
       }
     }
     return filtredTerminals;
@@ -25,6 +29,7 @@ class FiltredVendingTerminalStatus extends VendingTerminalStatus {
 class VendingTerminalStatus {
   int id;
   dynamic address;
+  dynamic city;
   dynamic latitude;
   dynamic longitude;
   String status;
@@ -34,6 +39,7 @@ class VendingTerminalStatus {
   VendingTerminalStatus({
     this.id,
     this.address,
+    this.city,
     this.latitude,
     this.longitude,
     this.status,
@@ -45,6 +51,7 @@ class VendingTerminalStatus {
       VendingTerminalStatus(
         id: json['id'],
         address: json['address'],
+        city: json['city'].toString(),
         latitude: json['latitude'].toString(),
         longitude: json['longitude'].toString(),
         status: json['status'],
@@ -55,6 +62,7 @@ class VendingTerminalStatus {
   Map<String, dynamic> toJson() => {
         'id': id,
         'address': address,
+        'city': city,
         'latitude': latitude,
         'longitude': longitude,
         'status': status,
@@ -63,7 +71,7 @@ class VendingTerminalStatus {
       };
 
   Future<String> fetchDataFromApi() async {
-    const apiURL = 'https://devapi.berizaryad.ru/vendings/statuses';
+    const apiURL = 'http://preprodapi.berizaryad.ru/vendings/statuses';
     final response = await http.get(apiURL);
 
     if (response.statusCode == 200) {

@@ -4,13 +4,15 @@
 
 `vending_terminal_statuses_by_city ?` for help
 ```bash
--c, --city                      Specify city name, e.g. Moscow or SPb
+-c, --city                   Specify city name, e.g. Moscow or SPb
 
-          [SPb]                 Sankt Petersburg
-          [moscow] (default)    Moscow
+          [SPb]              Санкт-Петербург
+          [all] (default)    all
+          [moscow]           Москва
 
--s, --status                    Specify Vending terminal status, one of: 
-                                [full, empty, error, all (default)]
--?, --[no-]?                    Show this help
+-s, --status                 Specify Vending terminal status, one of: 
+                             [full, empty, error, all (default)]
+-?, --[no-]?                 Show this help
+-v, --[no-]verbose           verbose output
 ```
-e.g. `vending_terminal_statuses_by_city -s full -c Moscow`
+e.g. `vending_terminal_statuses_by_city -s full -c Moscow -v`
