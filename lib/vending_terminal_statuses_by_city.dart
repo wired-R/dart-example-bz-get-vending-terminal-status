@@ -4,11 +4,11 @@ import 'package:http/http.dart' as http;
 
 /// Filter output data by city and status
 class FiltredVendingTerminalStatus extends VendingTerminalStatus {
-  String _city; //ignore
+  String _city;
   final String _status;
-  static const Map _cityes = {'spb': 'Санкт-Петербург', 'moscow': 'Москва'};
+  static const Map _cities = {'spb': 'Санкт-Петербург', 'moscow': 'Москва'};
   FiltredVendingTerminalStatus(this._city, this._status) {
-    _city = _cityes[_city];
+    _city = _cities[_city];
   }
 
   @override
