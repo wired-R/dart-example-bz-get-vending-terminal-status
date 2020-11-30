@@ -20,6 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: DanTup/gh-actions/setup-dart@master
+      - run: dart pub get
       - run: mkdir build
       - run: dart2native bin/vending_terminal_statuses_by_city.dart -v -o build/${{ matrix.output-name }}
       - uses: actions/upload-artifact@v1
