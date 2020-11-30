@@ -12,7 +12,7 @@ void main(List<String> arguments) async {
   VendingTerminalStatus vts = FiltredVendingTerminalStatus(city, status);
   var terminals = await vts.getVendingTerminalsData();
   if (verbose) {
-    for (var t in await terminals) {
+    for (var t in terminals) {
       print(
           'show terminal id ${t.id} with status ${t.status} with address ${t.city} ${t.address}\ndescription ${t.description}\n');
     }
