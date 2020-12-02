@@ -75,7 +75,7 @@ class VendingTerminalStatus {
       };
 
   Future<String> fetchDataFromApi() async {
-    const apiURL = 'http://preprodapi.berizaryad.ru/vendings/statuses';
+    const apiURL = 'http://mobileapi.berizaryad.ru/vendings/statuses';
     final response = await http.get(apiURL);
 
     if (response.statusCode == 200) {
